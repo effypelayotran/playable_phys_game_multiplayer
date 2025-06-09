@@ -9,9 +9,9 @@ id_count = 0
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
-s.bind(("127.0.0.1", 5500))
+s.bind(("0.0.0.0", 5500))
 s.listen(MAX_PLAYERS)
-print(f"Server started on {"127.0.0.1"}:{5500}")
+print(f"Server started on {"0.0.0.0"}:{5500}")
 
 def threaded_client(conn, p, game_id):
     global id_count
