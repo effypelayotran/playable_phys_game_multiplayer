@@ -8,7 +8,7 @@ from stage import Stage
 from ship import Ship
 from blackhole import Blackhole
 
-SERVER_ADDR = ("127.0.0.1", 5500)
+SERVER_ADDR = ("66.228.34.65", 5500)
 BUFFER_SIZE = 65536
 
 class Network:

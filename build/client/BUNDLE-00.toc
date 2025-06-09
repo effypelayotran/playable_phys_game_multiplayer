@@ -1,0 +1,3 @@
+([('client',
+   '/Users/effypelayo/Desktop/playable_phys_game_multiplayer/dist/client',
+   'EXECUTABLE')],)

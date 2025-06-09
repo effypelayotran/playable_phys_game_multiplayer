@@ -208,9 +208,9 @@ class Asteroids():
 
     # move this kack somewhere else!
     def displayText(self):
-        font1 = pygame.font.Font('Hyperspace.otf', 50)
-        font2 = pygame.font.Font('Hyperspace.otf', 20)
-        font3 = pygame.font.Font('Hyperspace.otf', 30)
+        font1 = pygame.font.Font('assets/Hyperspace.otf', 50)
+        font2 = pygame.font.Font('assets/Hyperspace.otf', 20)
+        font3 = pygame.font.Font('assets/Hyperspace.otf', 30)
 
         titleText = font1.render('Asteroids', True, (180, 180, 180))
         titleTextRect = titleText.get_rect(centerx=self.stage.width/2)
@@ -233,7 +233,7 @@ class Asteroids():
 
 
     def displayScore(self):
-        font1 = pygame.font.Font('Hyperspace.otf', 30)
+        font1 = pygame.font.Font('assets/Hyperspace.otf', 30)
         scoreStr = str("%02d" % self.score)
         scoreText = font1.render(scoreStr, True, (200, 200, 200))
         scoreTextRect = scoreText.get_rect(centerx=100, centery=45)
@@ -243,7 +243,7 @@ class Asteroids():
 
     def displayPaused(self):
         if self.paused:
-            font1 = pygame.font.Font('Hyperspace.otf', 30)
+            font1 = pygame.font.Font('assets/Hyperspace.otf', 30)
             pausedText = font1.render("Paused", True, (255, 255, 255))
             textRect = pausedText.get_rect(
                 centerx=self.stage.width/2, centery=self.stage.height/2)
@@ -325,10 +325,8 @@ class Asteroids():
             self.ship.thrustJet.accelerating = False
         '''
 
-
-
     def displayFps(self):
-        font2 = pygame.font.Font('Hyperspace.otf', 15)
+        font2 = pygame.font.Font('assets/Hyperspace.otf', 15)
         fpsStr = str(self.fps)+(' FPS')
         scoreText = font2.render(fpsStr, True, (255, 255, 255))
         scoreTextRect = scoreText.get_rect(

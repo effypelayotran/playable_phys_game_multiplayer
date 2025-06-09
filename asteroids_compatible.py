@@ -1,3 +1,5 @@
+import os
+os.environ["SDL_VIDEODRIVER"] = "dummy"
 import pygame
 from pygame.locals import *
 import sys
@@ -131,9 +133,9 @@ class Asteroids:
             self.processKeys()
 
     def displayText(self):
-        font1 = pygame.font.Font('Hyperspace.otf', 50)
-        font2 = pygame.font.Font('Hyperspace.otf', 20)
-        font3 = pygame.font.Font('Hyperspace.otf', 30)
+        font1 = pygame.font.Font('assets/Hyperspace.otf', 50)
+        font2 = pygame.font.Font('assets/Hyperspace.otf', 20)
+        font3 = pygame.font.Font('assets/Hyperspace.otf', 30)
 
         titleText = font1.render('Asteroids', True, (180, 180, 180))
         titleTextRect = titleText.get_rect(centerx=self.stage.width/2)
@@ -151,7 +153,7 @@ class Asteroids:
         self.stage.screen.blit(instructionText, instructionTextRect)
 
     def displayScore(self):
-        font1 = pygame.font.Font('Hyperspace.otf', 30)
+        font1 = pygame.font.Font('assets/Hyperspace.otf', 30)
         scoreStr = f"{self.score:02d}"
         scoreText = font1.render(scoreStr, True, (200, 200, 200))
         scoreTextRect = scoreText.get_rect(centerx=100, centery=45)
@@ -159,7 +161,7 @@ class Asteroids:
 
     def displayPaused(self):
         if self.paused:
-            font1 = pygame.font.Font('Hyperspace.otf', 30)
+            font1 = pygame.font.Font('assets/Hyperspace.otf', 30)
             pausedText = font1.render("Paused", True, (255, 255, 255))
             textRect = pausedText.get_rect(centerx=self.stage.width/2, centery=self.stage.height/2)
             self.stage.screen.blit(pausedText, textRect)
@@ -196,7 +198,7 @@ class Asteroids:
                 ship.thrustJet.accelerating = False
 
     def displayFps(self):
-        font2 = pygame.font.Font('Hyperspace.otf', 15)
+        font2 = pygame.font.Font('assets/Hyperspace.otf', 15)
         fpsText = font2.render(f"{self.fps} FPS", True, (255, 255, 255))
         fpsRect = fpsText.get_rect(centerx=self.stage.width/2, centery=15)
         self.stage.screen.blit(fpsText, fpsRect)
