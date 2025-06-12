@@ -11,7 +11,8 @@ from blackhole import Blackhole
 FONT_PATH = os.path.join(os.path.dirname(__file__), 'assets', 'Hyperspace.otf')
 
 # Server settings
-SERVER_ADDR = ("45.79.130.19", 5600)
+SERVER_ADDR = ("127.0.0.1", 5600)
+# SERVER_ADDR = ("45.79.130.19", 5600)
 BUFFER_SIZE = 65536
 
 WHITE = (255, 255, 255)
