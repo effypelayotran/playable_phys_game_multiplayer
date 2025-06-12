@@ -63,6 +63,7 @@ class Ship(Shooter): # Class is based on Shooter
     def rotateLeft(self):
         self.angle += self.turnAngle
         self.thrustJet.angle += self.turnAngle
+        
     def rotateRight(self):
         self.angle -= self.turnAngle
         self.thrustJet.angle -= self.turnAngle

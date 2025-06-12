@@ -14,7 +14,7 @@ from soundManager import *
 import gameParameters
 
 class Asteroids:
-    def __init__(self, owner=None):
+    def __init__(self, owner=None, num_ships=3):
         """
         owner: if passed (Game), run in headless mode (no display) for server;
         otherwise standalone pygame mode.
@@ -44,11 +44,15 @@ class Asteroids:
         self.score = 0
         self.ship = None
         self.shipsNum = 0
-        self.initialiseGame()
+        self.num_ships = num_ships
+        self.initialiseGame(num_ships)
 
-    def initialiseGame(self):
+    def initialiseGame(self, num_ships=None):
         self.gameState = 'playing'
-        self.startNumShips = gameParameters.startNumShips
+        if num_ships is not None:
+            self.startNumShips = num_ships
+        else: 
+            self.startNumShips = gameParameters.startNumShips
         self.createShipsList()
         self.blackholeList = [] 
 

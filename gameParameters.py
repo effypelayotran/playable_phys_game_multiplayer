@@ -9,7 +9,9 @@ from pygame.locals import *  #
 includeSound = False # 0 will deactivate any attempt to generate sound
 
 # Number of ships shown in the game space
-startNumShips = 3
+startNumShips = 5
+enableGrowingBlackhole = False
+
 
 bhGravityEventHorizonRadius = 20.   # Used for graphics and end of life
 bhGravityMinRadius = 20.            # Used for gravity

@@ -11,7 +11,7 @@ from vector2d import *
 from shooter import *
 from soundManager import *
 import gameParameters
-
+import pygame
 
 # Blackhole
 
@@ -23,9 +23,17 @@ class Blackhole(VectorSprite):
 
         position = gameParameters.screenCenter
         heading = Vector2d(0,0)
+        self.radius = gameParameters.bhGravityEventHorizonRadius
+        screen_w = gameParameters.screenWidth
+        screen_h = gameParameters.screenHeight
+        self.max_radius = min(screen_w, screen_h)
+         
         pointlist = self.createPointList()
         self.angle = 0. # Is this correct??
-        self.radius = gameParameters.bhGravityEventHorizonRadius
+        self.enable_growth    = gameParameters.enableGrowingBlackhole
+        self.growth_interval  = 1000    # ms
+        self.growth_amount    = 5.0
+        self.last_growth_time = pygame.time.get_ticks()
 
         VectorSprite.__init__(self, position, heading, pointlist)
 
@@ -33,7 +41,7 @@ class Blackhole(VectorSprite):
     def createPointList(self):
         # Create a circle polygon
         n = 8 # Number of separate points in circle
-        radius = gameParameters.bhGravityEventHorizonRadius
+        radius = self.radius
         pointlist = [
             ( int(radius * math.cos(i / n * 2. * math.pi)), int(radius * math.sin(i / n * 2. * math.pi)) )
             for i in range(0, n+1) ] # Ensure it closes +1
@@ -44,6 +52,16 @@ class Blackhole(VectorSprite):
         VectorSprite.move(self)
         # Spin the BH to make it look fun
         self.angle += 1
+        # Grow the BH
+        if self.enable_growth:
+            now = pygame.time.get_ticks()
+            if now - self.last_growth_time >= self.growth_interval:
+                new_radius = self.radius + self.growth_amount
+                if new_radius <= self.max_radius:
+                    self.radius = new_radius
+                    self.last_growth_time += self.growth_interval
+                    self.pointlist = self.createPointList()
+
 
 #    def destroyed(self):
 

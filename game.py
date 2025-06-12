@@ -2,11 +2,14 @@ import gameParameters
 from asteroids_compatible import Asteroids
 
 class Game:
-    def __init__(self, id):
+    def __init__(self, id, num_ships=5):
         self.id = id
-        self.actions = [0] * gameParameters.startNumShips         # one action slot per ship
+        if num_ships is not None:
+            self.actions = [0] * num_ships 
+        else:
+            self.actions = [0] * gameParameters.startNumShips         # one action slot per ship
         self.ready = False
-        self.env = Asteroids(owner=self)
+        self.env = Asteroids(owner=self, num_ships=num_ships)
 
     def play(self, player, action):
         # store last action for that player
@@ -15,6 +18,7 @@ class Game:
     def step(self):
         # apply each player's stored action to their ship
         for pid, act in enumerate(self.actions):
+
             ship = self.env.shipsList[pid]
             ship.thrustJet.accelerating = False
             if act == 1:
@@ -24,6 +28,7 @@ class Game:
                 ship.rotateLeft()
             elif act == 3:
                 ship.rotateRight()
+
         # advance physics one tick
         self.env.update()
 
@@ -37,7 +42,9 @@ class Game:
                 "angle": ship.angle,
                 "color": ship.color
             })
+
         bh = self.env.blackholeList[0]
+
         return {
             "ships": ships,
             "blackhole": {
